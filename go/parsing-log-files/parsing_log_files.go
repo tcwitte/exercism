@@ -5,11 +5,13 @@ import (
 	"regexp"
 )
 
-var validLine *regexp.Regexp = regexp.MustCompile(`^\[(TRC|DBG|INF|WRN|ERR|FTL)\]`)
-var lineSeparator *regexp.Regexp = regexp.MustCompile(`<[~\*=\-]*>`)
-var passwordPattern *regexp.Regexp = regexp.MustCompile(`".*[pP][aA][sS][sS][wW][oO][rR][dD].*"`)
-var endOfLineText *regexp.Regexp = regexp.MustCompile(`end\-of\-line[\d]+`)
-var userPattern *regexp.Regexp = regexp.MustCompile(`User\s+(\w+)`)
+var (
+	validLine       *regexp.Regexp = regexp.MustCompile(`^\[(TRC|DBG|INF|WRN|ERR|FTL)\]`)
+	lineSeparator   *regexp.Regexp = regexp.MustCompile(`<[~\*=\-]*>`)
+	passwordPattern *regexp.Regexp = regexp.MustCompile(`".*[pP][aA][sS][sS][wW][oO][rR][dD].*"`)
+	endOfLineText   *regexp.Regexp = regexp.MustCompile(`end\-of\-line[\d]+`)
+	userPattern     *regexp.Regexp = regexp.MustCompile(`User\s+(\w+)`)
+)
 
 func IsValidLine(text string) bool {
 	return validLine.MatchString(text)
